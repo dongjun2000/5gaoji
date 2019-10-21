@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">{{ config('app.name') }}</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -15,7 +16,8 @@
                     <a class="nav-link" href="#">Link</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbar-more" data-toggle="dropdown" aria-haspopup="true"
+                    <a class="nav-link dropdown-toggle" href="#" id="navbar-more" data-toggle="dropdown"
+                       aria-haspopup="true"
                        aria-expanded="false">更多</a>
                     <div class="dropdown-menu" aria-labelledby="navbar-more">
                         <a class="dropdown-item" href="#">Action 1</a>
@@ -25,12 +27,32 @@
             </ul>
 
             <ul class="navbar-nav navbar-right">
-                <li class="nav-item">
-                    <a href="{{ route('login') }}" class="nav-link">登录</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('register') }}" class="nav-link">注册</a>
-                </li>
+                @guest
+                    <li class="nav-item">
+                        <a href="{{ route('login') }}" class="nav-link">登录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('register') }}" class="nav-link">注册</a>
+                    </li>
+                @else
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="https://www.mi360.cn/imgs/default/face.jpg" class="img-responsive img-circle" width="30px" height="30px">
+                            {{ Auth::user()->name }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="">个人中心</a>
+                            <a class="dropdown-item" href="">编辑资料</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" id="logout" href="#">
+                                <form action="{{ route('logout') }}" method="POST">
+                                    {{ csrf_field() }}
+                                    <button class="btn btn-block btn-danger" type="submit" name="button">退出</button>
+                                </form>
+                            </a>
+                        </div>
+                    </li>
+                @endguest
             </ul>
         </div>
     </div>
