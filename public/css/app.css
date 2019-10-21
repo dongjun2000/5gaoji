@@ -16548,6 +16548,10 @@ body {
   margin-top: 0px;
 }
 
+.register-page img.captcha {
+  cursor: pointer;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
