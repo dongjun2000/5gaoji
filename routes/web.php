@@ -13,4 +13,4 @@
 
 Route::get('/', 'PagesController@home')->name('home');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
