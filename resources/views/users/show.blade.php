@@ -8,27 +8,26 @@
             <div class="card">
                 <img class="card-img-top" src="https://www.mi360.cn/imgs/default/face.jpg" alt="{{ $user->name }}" title="{{ $user->name }}">
                 <div class="card-body">
-                    <h5>个人简介</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h1 class="card-title" style="font-size:22px">
+                        {{ $user->name }}
+                        <small class="text-primary"><i class="fa fa-mars"></i></small>
+                    </h1>
                     <hr>
-                    <h5>注册于</h5>
-                    <p>2年前</p>
+                    <h5 class="card-title">个人简介</h5>
+                    <p>{{ $user->intro }}</p>
                 </div>
             </div>
         </div>
         <div class="col-md-9">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="mb-0" style="font-size:22px">
-                        {{ $user->name }}
-                        <small>{{ $user->email }}</small>
-                    </h1>
+                    <h5 class="mb-0" >
+                        注册于 {{ $user->created_at->diffForHumans() }}
+                    </h5>
                 </div>
             </div>
 
-            <hr>
-
-            <div class="card">
+            <div class="card mt-3">
                 <div class="card-body">
                     暂无数据 ~_~
                 </div>
