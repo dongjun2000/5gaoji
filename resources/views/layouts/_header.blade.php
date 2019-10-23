@@ -19,7 +19,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbar-more" data-toggle="dropdown"
                        aria-haspopup="true"
                        aria-expanded="false">更多</a>
-                    <div class="dropdown-menu" aria-labelledby="navbar-more">
+                    <div class="dropdown-menu mt-0" aria-labelledby="navbar-more">
                         <a class="dropdown-item" href="#">Action 1</a>
                         <a class="dropdown-item" href="#">Action 2</a>
                     </div>

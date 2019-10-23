@@ -16538,6 +16538,10 @@ body {
   font-size: 14px;
 }
 
+i.fa {
+  margin-right: 5px;
+}
+
 .navbar-static-top {
   border-color: #e7e7e7;
   background-color: #fff;
@@ -16572,5 +16576,13 @@ body {
 
 .footer .container p a {
   color: inherit;
+}
+
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.dropdown > .dropdown-toggle:active {
+  pointer-events: none;
 }
 
