@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-3 user-info">
             <div class="card">
-                <img class="card-img-top" src="https://www.mi360.cn/imgs/default/face.jpg" alt="{{ $user->name }}" title="{{ $user->name }}">
+                <img class="card-img-top" src="{{ $user->avatar }}" alt="{{ $user->name }}" title="{{ $user->name }}">
                 <div class="card-body">
                     <h1 class="card-title" style="font-size:22px">
                         {{ $user->name }}
