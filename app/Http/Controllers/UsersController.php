@@ -25,13 +25,14 @@ class UsersController extends Controller
 
         // 上传图片逻辑
         if ($request->avatar) {
-            $result = $uploader->save($request->avatar, 'avatars', $user->id);
+            $result = $uploader->save($request->avatar, 'avatars', $user->id, 500);
             if ($result) {
                 $data['avatar'] = $result['path'];
             }
         }
 
         $user->update($data);
+
         return redirect()->route('users.show', $user)->with('success', '个人资料更新成功！');
     }
 }
