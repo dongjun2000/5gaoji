@@ -23,7 +23,7 @@ class TopicsController extends Controller
     public function index()
     {
         $topics = Topic::paginate();
-dd($topics);
+
         return view('topics.index', compact('topics'));
     }
 
