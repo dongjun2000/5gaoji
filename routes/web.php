@@ -15,10 +15,14 @@ Route::get('/', 'PagesController@home')->name('home');
 
 Auth::routes(['verify' => true]);
 
+Route::resource('topics', 'TopicsController');
+
 Route::resource('users', 'UsersController', [
     'only' => [
         'show', 'update', 'edit'
     ]
 ]);
 
-Route::resource('topics', 'TopicsController');
+Route::resource('categories', 'CategoriesController', [
+    'only' => 'show'
+]);
