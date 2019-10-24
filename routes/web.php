@@ -20,3 +20,5 @@ Route::resource('users', 'UsersController', [
         'show', 'update', 'edit'
     ]
 ]);
+
+Route::resource('topics', 'TopicsController');
