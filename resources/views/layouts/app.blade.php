@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', config('app.name')) | {{ config('app.name') }} - 玩转黑科技！</title>
+    <meta name="description" content="@yield('description', '我搞机是智能硬件玩家的聚合地，这里有最新、最全的资讯和测评！')">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     @yield('styles')
