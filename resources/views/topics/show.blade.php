@@ -3,5 +3,5 @@
 @section('title', $topic->title)
 
 @section('content')
-    11
+    {{ $topic->title }}
 @stop

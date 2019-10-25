@@ -47,8 +47,13 @@
                         <a href="{{ route('register') }}" class="nav-link">注册</a>
                     </li>
                 @else
+                    <li class="nav-item">
+                        <a href="{{ route('topics.create') }}" class="nav-link mt-1 mr-3 font-weight-bold">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="{{ route('users.show', Auth::user()) }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="{{ Auth::user()->avatar }}" class="img-responsive img-circle mr-1" width="30px" height="30px">
                             {{ Auth::user()->name }}
                         </a>
