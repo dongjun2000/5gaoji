@@ -7,6 +7,7 @@ use App\Topic;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\TopicRequest;
+use App\Handlers\ImageUploadHandler;
 
 class TopicsController extends Controller
 {
@@ -38,13 +39,13 @@ class TopicsController extends Controller
     public function create(Topic $topic)
     {
         $categories = Category::all();
-        return view('topics.create_and_edit', compact('topic','categories'));
+        return view('topics.create_and_edit', compact('topic', 'categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(TopicRequest $request, Topic $topic)
@@ -59,7 +60,7 @@ class TopicsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Topic  $topic
+     * @param  \App\Topic $topic
      * @return \Illuminate\Http\Response
      */
     public function show(Topic $topic)
@@ -70,7 +71,7 @@ class TopicsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Topic  $topic
+     * @param  \App\Topic $topic
      * @return \Illuminate\Http\Response
      */
     public function edit(Topic $topic)
@@ -82,8 +83,8 @@ class TopicsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Topic  $topic
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Topic $topic
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Topic $topic)
@@ -93,15 +94,42 @@ class TopicsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Topic  $topic
-     * @return \Illuminate\Http\Response
+     * @param Topic $topic
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Topic $topic)
     {
         $topic->delete();
 
         return redirect()->route('topics.index');
+    }
+
+    /**
+     * 编辑器图片上传
+     *
+     * @param Request $request
+     * @param ImageUploadHandler $uploader
+     * @return array
+     */
+    public function uploadImage(Request $request, ImageUploadHandler $uploader)
+    {
+        $data = [
+            'success'   => false,
+            'msg'       => '上传失败！',
+            'file_path' => '',
+        ];
+        // 判断是否有上传文件，并赋值给 $file
+        if ($file = $request->upload_file) {
+            // 保存图片到本地
+            $result = $uploader->save($file, 'topics', Auth::id(), 1024);
+            // 图片保存成功的话
+            if ($result) {
+                $data['file_path'] = $result['path'];
+                $data['msg']       = '上传成功！';
+                $data['success']   = true;
+            }
+        }
+        return $data;
     }
 }

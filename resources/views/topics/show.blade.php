@@ -4,4 +4,6 @@
 
 @section('content')
     {{ $topic->title }}
+
+    {{ $topic->body }}
 @stop

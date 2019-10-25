@@ -15,6 +15,8 @@ Route::get('/', 'PagesController@home')->name('home');
 
 Auth::routes(['verify' => true]);
 
+Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
+
 Route::resource('topics', 'TopicsController');
 
 Route::resource('users', 'UsersController', [
