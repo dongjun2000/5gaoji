@@ -16,6 +16,25 @@
         $(document).ready(function () {
             new Simditor({
                 textarea: $('#editor'),
+                toolbar: [
+                    'fontScale',
+                    'color',
+                    'bold',
+                    'hr',
+                    'code',
+                    'italic',
+                    'underline',
+                    'strikethrough',
+                    'ol',
+                    'ul',
+                    'blockquote',
+                    'link',
+                    'image',
+                    'indent',
+                    'outdent',
+                    'alignment',
+                    'table'
+                ],
                 upload: {
                     // 处理上传图片的 URL；
                     url: '{{ route('topics.upload_image') }}',
@@ -50,7 +69,12 @@
                     @endif
                 </h2>
                 <hr>
-                <form action="{{ route('topics.store') }}" method="post">
+                @if($topic->id)
+                    <form action="{{ route('topics.update', $topic) }}" method="post">
+                        {{ method_field('PUT') }}
+                @else
+                     <form action="{{ route('topics.store') }}" method="post">
+                @endif
                     {{ csrf_field() }}
 
                     @include('shared._error')
@@ -62,9 +86,9 @@
 
                     <div class="form-group">
                         <select class="form-control" name="category_id" required>
-                            <option value="" hidden disabled selected>请选择分类</option>
+                            <option value="" hidden disabled {{ $topic->id ? '' : 'selected' }}>请选择分类</option>
                             @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option value="{{ $category->id }}" {{ $topic->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                             @endforeach
                         </select>
                     </div>

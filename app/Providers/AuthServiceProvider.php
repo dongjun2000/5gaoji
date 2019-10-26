@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Policies\TopicPolicy;
 use App\Policies\UserPolicy;
+use App\Topic;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -15,7 +17,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        User::class => UserPolicy::class,
+        User::class  => UserPolicy::class,
+        Topic::class => TopicPolicy::class,
     ];
 
     /**

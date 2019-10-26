@@ -71,13 +71,15 @@ class TopicsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Topic $topic
-     * @return \Illuminate\Http\Response
+     * @param Topic $topic
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Topic $topic)
     {
-
-        return view('topics.create_and_edit', compact('topic'));
+        $this->authorize('update', $topic);
+        $categories = Category::all();
+        return view('topics.create_and_edit', compact('topic', 'categories'));
     }
 
     /**
@@ -87,9 +89,10 @@ class TopicsController extends Controller
      * @param  \App\Topic $topic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Topic $topic)
+    public function update(TopicRequest $request, Topic $topic)
     {
-
+        $this->authorize('update', $topic);
+        $topic->update($request->all());
         return redirect()->route('topics.show', $topic)->with('success', '更新成功！');
     }
 
