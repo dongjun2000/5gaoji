@@ -8,6 +8,7 @@ use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\TopicRequest;
 use App\Handlers\ImageUploadHandler;
+use Illuminate\Support\Facades\Redis;
 
 class TopicsController extends Controller
 {
@@ -54,7 +55,7 @@ class TopicsController extends Controller
         $topic->user_id = Auth::id();
         $topic->save();
 
-        return redirect()->route($topic->link())->with('success', '帖子创建成功！');
+        return redirect()->to($topic->link())->with('success', '帖子创建成功！');
     }
 
     /**
@@ -65,6 +66,9 @@ class TopicsController extends Controller
      */
     public function show(Request $request, Topic $topic)
     {
+
+//        Redis::set('name', 'dongjun');
+
         // URL矫正
         if (!empty($topic->slug) && $topic->slug != $request->slug) {
             return redirect($topic->link(), 301);
@@ -98,7 +102,7 @@ class TopicsController extends Controller
     {
         $this->authorize('update', $topic);
         $topic->update($request->all());
-        return redirect()->route($topic->link())->with('success', '更新成功！');
+        return redirect()->to($topic->link())->with('success', '更新成功！');
     }
 
     /**
