@@ -2,8 +2,6 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Topic extends Model
 {
     protected $fillable = [
@@ -39,12 +37,6 @@ class Topic extends Model
 
         // 预加载防止 N+1 问题
         return $query->with('user', 'category');
-    }
-
-    public function scopeRecent($query)
-    {
-        // 按照创建时间排序
-        return $query->orderBy('created_at', 'desc');
     }
 
     public function scopeRecentReplied($query)

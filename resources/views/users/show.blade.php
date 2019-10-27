@@ -21,7 +21,7 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="mb-0">
+                    <h5 class="mb-0 text-center">
                         注册于 {{ $user->created_at->diffForHumans() }}
                     </h5>
                 </div>
@@ -31,15 +31,21 @@
                 <div class="card-header bg-transparent">
                     <ul class="nav nav-tabs card-header-tabs">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Ta 的话题</a>
+                            <a class="nav-link bg-transparent {{ active_class(if_query('tab', null)) }}"
+                               href="{{ route('users.show', $user) }}">Ta 的话题</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Ta 的回复</a>
+                            <a class="nav-link bg-transparent {{ active_class(if_query('tab', 'replies')) }}"
+                               href="{{ route('users.show', [$user, 'tab' => 'replies']) }}">Ta 的回复</a>
                         </li>
                     </ul>
                 </div>
                 <div class="card-body">
-                    @include('users._topics', ['topics' => $user->topics()->recent()->paginate(5)])
+                    @if(if_query('tab', 'replies'))
+                        @include('users._replies', ['replies' => $user->replies()->with('topic')->recent()->paginate(5)])
+                    @elseif(if_query('tab', null))
+                        @include('users._topics', ['topics' => $user->topics()->recent()->paginate(5)])
+                    @endif
                 </div>
             </div>
         </div>

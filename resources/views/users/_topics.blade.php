@@ -2,7 +2,7 @@
     <ul class="list-group mt-2">
         @foreach($topics as $topic)
             <li class="list-group-item pl-2 pr-2 border-right-0 border-left-0 @if($loop->first) border-top-0 @endif">
-                <a href="">
+                <a href="{{ $topic->link() }}">
                     {{ $topic->title }}
                 </a>
                 <span class="meta float-right text-secondary">
@@ -14,10 +14,9 @@
         @endforeach
     </ul>
 
+    <div class="mt-4 pt-1">
+        {{ $topics->links() }}
+    </div>
 @else
     <div class="empty-block">暂无数据 ~_~</div>
 @endif
-
-<div class="mt-4 pt-1">
-    {!! $topics->render() !!}
-</div>
