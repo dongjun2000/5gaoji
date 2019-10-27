@@ -17,10 +17,17 @@ class ReplyObserver
 //        $reply->topic()->increment('reply_count', 1);
 
         // 统计后入库
-        $reply->topic->reply_count = $reply->topic->replies->count();
-        $reply->topic->save();
+        $reply->topic->updateReplyCount();
 
-        // 通知话题作者有新的评论
-        $reply->topic->user->notify(new TopicReplied($reply));
+        // 如果要通知的人是当前用户，就不必通知了！
+        if (!$reply->user->isAuthorOf($reply->topic)) {
+            // 通知话题作者有新的评论
+            $reply->topic->user->notify(new TopicReplied($reply));
+        }
+    }
+
+    public function deleted(Reply $reply)
+    {
+        $reply->topic->updateReplyCount();
     }
 }
