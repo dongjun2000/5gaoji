@@ -44,12 +44,12 @@ class TopicReplied extends Notification
         return [
             'reply_id'      => $this->reply->id,
             'reply_content' => $this->reply->content,
-            'user_id' => $this->reply->user->id,
-            'user_name' => $this->reply->user->name,
-            'user_avatar' => $this->reply->user->avatar,
-            'topic_link' => $link,
-            'topic_id' => $topic->id,
-            'topic_title' => $topic->title,
+            'user_id'       => $this->reply->user->id,
+            'user_name'     => $this->reply->user->name,
+            'user_avatar'   => $this->reply->user->avatar,
+            'topic_link'    => $link,
+            'topic_id'      => $topic->id,
+            'topic_title'   => $topic->title,
         ];
     }
 

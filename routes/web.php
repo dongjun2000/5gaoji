@@ -32,7 +32,9 @@ Route::resource('users', 'UsersController', [
 ]);
 
 Route::resource('categories', 'CategoriesController', [
-    'only' => 'show'
+    'only' => ['show']
 ]);
 
-Route::resource('replies', 'RepliesController', ['only' => 'store', 'destroy']);
+Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]);
+
+Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
