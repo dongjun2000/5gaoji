@@ -63,7 +63,7 @@
             <div class="card topic-reply mt-4">
                 <div class="card-body">
                     {{--回复表单--}}
-                    @include('topics._reply_box', ['topic' => $topic])
+                    @includeWhen(Auth::check(), 'topics._reply_box', ['topic' => $topic])
                     {{--回复列表--}}
                     @include('topics._reply_list', ['replies' => $topic->replies()->with('user')->get()])
                 </div>

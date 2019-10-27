@@ -34,3 +34,5 @@ Route::resource('users', 'UsersController', [
 Route::resource('categories', 'CategoriesController', [
     'only' => 'show'
 ]);
+
+Route::resource('replies', 'RepliesController', ['only' => 'store', 'destroy']);
