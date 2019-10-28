@@ -6,8 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', config('app.name')) | {{ config('app.name') }} - 玩转黑科技！</title>
-    <meta name="description" content="@yield('description', '我搞机是智能硬件玩家的聚合地，这里有最新、最全的资讯和测评！')">
+    <title>@yield('title', config('app.name')) | {{ setting('site_name') }}</title>
+    <meta name="description" content="@yield('description', setting('seo_description'))">
+    <meta name="keywords" content="@yield('keywords', setting('seo_keyword'))">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     @yield('styles')
