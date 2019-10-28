@@ -14,21 +14,25 @@
 
 </head>
 <body>
-    <div id="app" class="{{ route_class() }}-page">
-        @include('layouts._header')
+<div id="app" class="{{ route_class() }}-page">
+    @include('layouts._header')
 
-        <div class="container">
-            @include('shared._message')
+    <div class="container">
+        @include('shared._message')
 
-            @yield('content')
-        </div>
-
-        @include("layouts._footer")
+        @yield('content')
     </div>
 
-    <script src="{{ mix('js/app.js') }}"></script>
+    @include("layouts._footer")
+</div>
 
-    @yield('scripts')
+<script src="{{ mix('js/app.js') }}"></script>
+
+@if (app()->isLocal())
+    @include('sudosu::user-selector')
+@endif
+
+@yield('scripts')
 
 </body>
 </html>

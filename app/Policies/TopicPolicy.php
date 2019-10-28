@@ -4,21 +4,9 @@ namespace App\Policies;
 
 use App\Topic;
 use App\User;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
-class TopicPolicy
+class TopicPolicy extends Policy
 {
-    use HandlesAuthorization;
-
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
 
     public function update(User $user, Topic $topic)
     {

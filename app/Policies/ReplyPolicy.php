@@ -4,21 +4,9 @@ namespace App\Policies;
 
 use App\Reply;
 use App\User;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ReplyPolicy
+class ReplyPolicy extends Policy
 {
-    use HandlesAuthorization;
-
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
 
     public function destroy(User $user, Reply $reply)
     {

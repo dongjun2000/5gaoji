@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use App\Observers\ReplyObserver;
-use App\Observers\TopicObserver;
 use App\Reply;
 use App\Topic;
-use Illuminate\Support\ServiceProvider;
+use App\Observers\ReplyObserver;
+use App\Observers\TopicObserver;
+use VIACreative\SudoSu\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,7 +17,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        if (app()->isLocal()) {
+            $this->app->register(ServiceProvider::class);
+        }
     }
 
     /**
