@@ -21,7 +21,7 @@ return array(
      *
      * @type string
      */
-    'title' => config('app.name'),
+    'title' => env('APP_NAME', '我搞机'),
 
     /*
      * 模型配置信息文件存放目录
