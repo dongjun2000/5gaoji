@@ -109,7 +109,7 @@ return array(
      *
      * @type string
      */
-    'home_page' => 'users',
+    'home_page' => 'topics',
 
     /*
      * 右上角『返回主站』按钮的链接
