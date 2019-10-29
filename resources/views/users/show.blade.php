@@ -15,6 +15,9 @@
                     <hr>
                     <h5 class="card-title">个人简介</h5>
                     <p>{{ $user->intro }}</p>
+                    <hr>
+                    <h5>注册于</h5>
+                    {{ $user->created_at->diffForHumans() }}
                 </div>
             </div>
         </div>
@@ -22,7 +25,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="mb-0 text-center">
-                        注册于 {{ $user->created_at->diffForHumans() }}
+                        最后活跃于 {{ $user->last_actived_at->diffForHumans() }}
                     </h5>
                 </div>
             </div>
