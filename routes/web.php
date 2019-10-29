@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PagesController@home')->name('home');
+Route::get('/', 'TopicsController@index')->name('home');
 
 Auth::routes(['verify' => true]);
 
@@ -19,7 +19,7 @@ Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload
 
 Route::resource('topics', 'TopicsController', [
     'only' => [
-        'index', 'create', 'store', 'update', 'edit', 'destroy'
+        'create', 'store', 'update', 'edit', 'destroy'
     ]
 ]);
 
