@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Link;
 use App\User;
 use Auth;
 use App\Topic;
@@ -26,14 +27,16 @@ class TopicsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Topic $topic, User $user)
+    public function index(Request $request, Topic $topic, User $user, Link $link)
     {
         $topics = $topic->withOrder($request->order)->paginate(20);
 
         // 活跃用户列表
         $active_users = $user->getActiveUsers();
+        // 获取资源推荐列表
+        $links = $link->getAllCached();
 
-        return view('topics.index', compact('topics', 'active_users'));
+        return view('topics.index', compact('topics', 'active_users', 'links'));
     }
 
     /**

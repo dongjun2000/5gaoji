@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Link;
+use App\Observers\LinkObserver;
 use App\Reply;
 use App\Topic;
 use App\Observers\ReplyObserver;
@@ -31,5 +33,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Topic::observe(TopicObserver::class);
         Reply::observe(ReplyObserver::class);
+        Link::observe(LinkObserver::class);
     }
 }
