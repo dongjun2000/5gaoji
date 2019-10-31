@@ -19,8 +19,14 @@
                             <a class="nav-link {{ active_class(if_query('order', '')) }}" href="{{ Request::url() }}">最后回复</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ active_class(if_query('order', 'recent')) }}" href="{{ Request::url() }}?order=recent">最新发布</a>
+                            <a class="nav-link {{ active_class(if_query('order', 'recent')) }}"
+                               href="{{ Request::url() }}?order=recent">最新发布</a>
                         </li>
+                        @if(isset($category))
+                            <li class="nav-item float-right">
+                                <a class="nav-link" href="{{ route('chat.room', ['room' => $category->id]) }}">进入房间</a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
                 <div class="card-body">

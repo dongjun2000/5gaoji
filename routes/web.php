@@ -13,6 +13,10 @@
 
 Route::get('/', 'TopicsController@index')->name('home');
 
+Route::get('/chat/room/{room}', 'ChatController@room')->name('chat.room');
+Route::post('/chat/init', 'ChatController@init')->name('chat.init');
+Route::post('/chat/say', 'ChatController@say')->name('chat.say');
+
 Auth::routes(['verify' => true]);
 
 Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
