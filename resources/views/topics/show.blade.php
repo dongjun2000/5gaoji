@@ -47,7 +47,8 @@
                                role="button">
                                 <i class="far fa-edit"></i> 编辑
                             </a>
-                            <form action="{{ route('topics.destroy', $topic) }}" method="post" onsubmit="return confirm('您确定要删除吗？')" class="d-inline-block">
+                            <form action="{{ route('topics.destroy', $topic) }}" method="post"
+                                  onsubmit="return confirm('您确定要删除吗？')" class="d-inline-block">
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
                                 <button href="#" class="btn btn-outline-secondary btn-sm" role="button">
@@ -70,4 +71,20 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('scripts')
+    <script>
+        $(function () {
+            // ajax提交评论
+            $('#reply').submit(function (e) {
+                const url = e.currentTarget.action;
+                $.post(url, $(this).serialize(), function (data) {
+                    $('#reply_list').append(data);
+                    $('#content').val('');
+                });
+                return false;
+            });
+        })
+    </script>
 @stop

@@ -1,7 +1,7 @@
 @include('shared._error')
 
 <div class="reply-box">
-    <form action="{{ route('replies.store') }}" method="post">
+    <form action="{{ route('replies.store') }}" method="post" id="reply">
         {{ csrf_field() }}
         <input type="hidden" name="topic_id" value="{{ $topic->id }}">
 
